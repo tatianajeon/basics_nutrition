@@ -1,0 +1,71 @@
+/* Body */
+body{
+    background-color: #f1e2d2;
+}
+
+/*Nav Styles */
+
+/* End of Nav Styles */
+
+/* Start of Hero/Header Section */
+
+.header{
+    display: flex;
+    justify-content: center;
+    background-image: url(../../static/images/vietnamese.png);
+    background-size: contain;
+    height: 800px;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.header-text{
+    flex-direction: column;
+    color: white;
+}
+
+
+/* End of Hero/Header Section */
+
+/* Start of Middle Section Styles */
+#middle-text{
+    text-align: center;
+    padding: 13vh;
+}
+
+#middle-text h2{
+    padding:1.5vw;
+}
+/* End of Middle Section Styles */
+
+/* Start of Features Section Styles */
+
+#features-section{
+    margin: 8vw;
+}
+/* End of Features Section */
+
+/* Community Section Styles */
+#Drone-image{
+    width: 50%;
+    max-width: 75%;
+    margin-left: 3vw;
+}
+/* End of Community Section */
+
+/* Footer Section Styles */
+.footer-text-flex{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3vw;
+}
+
+#footer-logo{
+    width:100%;
+    max-width:100%;
+}
+
+#footer{
+    border-top: 3px solid black;
+    margin-top: 20vh;
+}
