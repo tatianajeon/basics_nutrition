@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+            {% for cat, msg in messages %}
+                {% if cat == 'auth-success' %}
+                <div class="container">
+                    {{ msg }}
+                    <button type="button" class="close" data-dismiss = "alert" onclick="this.parentElement.style.display='none'">&times;</button>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %} 
+</div>
+
+<header class="hero-section">
+    <h3 class="header-text">Welcome to your Basics Nutrition App {{ current_user.email }}</h3>
+</header>
+
+
+<div class="container">
+    <h3>Happy Searching</h3>
+    <ul class="list-group">
+        <li class="list-group-item">Email: {{ current_user.email }}</li>
+        <li class="list-group-item">Token: {{ current_user.token }}</li>
+        <a href = "#" id="sourceLink"></a>
+    </ul>
+</div> 
+
+
+<h1 class="pt-5 pb-2">List of nutrition info</h1>
+
+      <p class="lead alert alert-warning">Here is a list of recipes for this week</p>
+        {% include 'searchform.html' %}
+        
+        {% for recipe in data %}
+        <div class="card" style="width: 18rem;">
+            <!-- <img class="card-img-top" alt="Card image cap">{{ picture }}</img> -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <td id="sourceUrl">Recipe link: {{ recipe.sourceUrl }}</td>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="#" class="btn btn-info">Add to MyRecipes</a>
+                    </div>
+            </div>
+        {% endfor %}
+
+            <!-- {% for recipe in data %}
+            <div class="list_recipes">
+                <td id=“title”>{{ recipe.title }}</td>
+                <td id="sourceUrl">{{ recipe.sourceUrl }}</td>
+            </div >
+            {% endfor %} -->
+
+
+{% endblock content %}

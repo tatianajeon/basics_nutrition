@@ -1,11 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy 
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 import uuid 
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets 
 from flask_login import UserMixin, LoginManager
 from flask_marshmallow import Marshmallow
+
 
 db = SQLAlchemy()
 
@@ -27,7 +28,8 @@ class User(db.Model, UserMixin):
     token = db.Column(db.String, default = '', unique = True)
     date_create = db.Column(db.DateTime, nullable = False, default = datetime.utcnow) 
 
-    user = db.relationship('User', backref = 'owner', lazy = True)
+    # need this for when a "drone" is created
+    # user = db.relationship('User', backref = 'owner', lazy = True)
 
     def __init__(self, email, first_name = '', last_name = '', id = '', password = '', token = '',   g_auth_verify = False):
         self.id = self.set_id()
@@ -50,3 +52,35 @@ class User(db.Model, UserMixin):
     
     def __repr__(self):
         return f"User {self.email} has been added"
+
+
+
+class Recipe(db.Model):
+    id = db.Column(db.String, primary_key=True)
+    name = db.Column(db.String(150))
+    title = db.Column(db.String(150))
+    sourceUrl = db.Column(db.String(150))
+    image = db.Column(db.String(150))
+    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
+
+    def __init__(self, name, title, image, sourceUrl, user_token = user_token, id =''):
+        self.id = self.set_id()
+        self.name = name
+        self.title = title
+        self.image = image
+        self.sourceUrl = sourceUrl
+        self.user_token = user_token
+
+    def __repr__(self):
+        return f"{self.title} has been added"
+
+    def set_id(self):
+        return secrets.token_urlsafe()
+
+
+class RecipeSchema(ma.Schema):
+    class Meta:
+        fields = ['id', 'name', 'title', 'image', 'sourceUrl']
+
+recipe_schema = RecipeSchema()
+recipes_schema = RecipeSchema(many = True)

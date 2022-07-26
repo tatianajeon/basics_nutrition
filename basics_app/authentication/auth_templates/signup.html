@@ -7,13 +7,16 @@
         <div class="row">
             <aside class="col-12 col-md-6">
                 <h2>Sign Up For Free</h2>
-                {{ form.first_name.label }}
-                {{ form.first_name(class = "form-control", placeholder = "First Name" )}}
-                {{ form.last_name.label }}
-                {{ form.last_name(class = "form-control", placeholder = "Last Name" )}}
                 {% include 'forms.html' %}
             </aside>
         </div>
     </main>
 
 {% endblock content %}
+
+
+
+<!-- {{ form.first_name.label }}
+{{ form.first_name(class = "form-control", placeholder = "First Name" )}}
+{{ form.last_name.label }}
+{{ form.last_name(class = "form-control", placeholder = "Last Name" )}} -->

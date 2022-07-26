@@ -2,23 +2,34 @@
 
 {% block content %}
 
-<form>
-
-    <div class="form-group">
-        {% with messages = get_flashed_messages(with_categories = true) %}
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
             {% for cat, msg in messages %}
                 {% if cat == 'user-created' %}
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div class="container">
+                    {{ msg }}
+                    <button type="button" class="close" data-dismiss = "alert" onclick="this.parentElement.style.display='none'">&times;
+                    </button>
+            </div>
                 {% endif %}
             {% endfor %}
         {% endif %}
-        {% endwith %}
+    {% endwith %}
+</div>
+
+
+<main class="container">
+    <div class="row login">
+        <h1>Log In Here</h1>
     </div>
-    {% include 'forms.html' %}
+    <div class="row">
+        <aside class="col-12 col-md-6 signin-box">
+            <h2>Sign In to Your Account</h2>
+            {% include 'forms.html' %}
+        </aside>
+    </div>
+</main>
 
-  </form>
 
-  {% endblock content %}
+{% endblock content %}
