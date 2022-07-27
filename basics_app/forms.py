@@ -20,3 +20,8 @@ class UserLoginForm(FlaskForm):
 class SubmitForm(FlaskForm):
     search = StringField('search', validators=[DataRequired()])
     submit_button = SubmitField()
+
+
+class AddContentForm(FlaskForm):
+    submit_button = SubmitField('get recipe')
+    submit_button = SubmitField('add recipe')

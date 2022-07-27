@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
 
 <div class="container">
     {% with messages = get_flashed_messages(with_categories = true) %}
@@ -18,12 +18,11 @@
 </div>
 
 <header class="hero-section">
-    <h3 class="header-text">Welcome to your Basics Nutrition App {{ current_user.email }}</h3>
+    <h3 class="header-text">Welcome to My Recipes {{ current_user.email }}</h3>
 </header>
 
-
 <div class="container">
-    <h3>Happy Searching</h3>
+    <h3>Your user info</h3>
     <ul class="list-group">
         <li class="list-group-item">Email: {{ current_user.email }}</li>
         <li class="list-group-item">Token: {{ current_user.token }}</li>
@@ -32,21 +31,22 @@
 </div> 
 
 
-<h1 class="pt-5 pb-2">List of nutrition info</h1>
+<h1 class="pt-5 pb-2">Saved Searcheso</h1>
 
-      <p class="lead alert alert-warning">Here is a list of recipes for this week</p>
-        {% include 'searchform.html' %}
-        
-        {% for recipe in data %}
-        <div class="card" style="width: 18rem;">
-            <!-- <img class="card-img-top" alt="Card image cap">{{ picture }}</img> -->
-                <div class="card-body">
-                    <h5 class="card-title">{{ recipe.title }}</h5>
-                    <td id="sourceUrl">Recipe link: {{ recipe.sourceUrl }}</td>
-                    {% include 'search_page_buttons.html' %}
-                </div>
-            </div>
-        {% endfor %}
+{% for recipe in recipes  %}
+<div class="card surfboard-collection" style="width: 18rem;">
+    <img class="card-img-top collection-img" src="#" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">
+        {{ recipe.image }}
+        {{ recipe.title }}
+        {{ recipe.sourceUrl }}
+    </p>
+    </div>
+  </div>
+{% endfor %}
+
+
 
 
 
