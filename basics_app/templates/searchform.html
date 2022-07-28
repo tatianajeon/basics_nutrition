@@ -1,11 +1,10 @@
 <form method = 'POST'>
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-        <fieldset id="search-field">
-            {{ form.search.label }}
-            {{ form.search(class = "form-control", placeholder= "Search") }}
-        </fieldset>
-        {{ form.submit_button(class="btn btn-primary btn-block") }}
+    {{ search_form.hidden_tag() }}
+    <div class="searchbar">
+        <fieldset id="searchbar">
+            {{ search_form.search(class = "form-control search-field", placeholder= "Search") }}
+        </fieldset>&nbsp;&nbsp;
+        {{ search_form.search_button(class="btn btn-outline-dark btn-block") }}
     </div>
 </form>
 

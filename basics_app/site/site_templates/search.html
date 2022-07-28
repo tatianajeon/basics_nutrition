@@ -7,10 +7,10 @@
         {% if messages %}
             {% for cat, msg in messages %}
                 {% if cat == 'auth-success' %}
-                <div class="container">
-                    {{ msg }}
-                    <button type="button" class="close" data-dismiss = "alert" onclick="this.parentElement.style.display='none'">&times;</button>
-                </div>
+                <div class="alert alert-warning alert-dismissible fade show login-notification" role="alert">
+                    <strong>Success!</strong> You've logged into your account. Enjoy!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
                 {% endif %}
             {% endfor %}
         {% endif %}
@@ -18,35 +18,51 @@
 </div>
 
 <header class="hero-section">
-    <h3 class="header-text">Welcome to your Basics Nutrition App {{ current_user.email }}</h3>
+    <h3 class="search-header-title">Search</h3>
+    <h3 class= "search-header-text">for your next meal</h3>
 </header>
 
 
-<div class="container">
-    <h3>Happy Searching</h3>
+<!-- <div class="container">
     <ul class="list-group">
         <li class="list-group-item">Email: {{ current_user.email }}</li>
         <li class="list-group-item">Token: {{ current_user.token }}</li>
         <a href = "#" id="sourceLink"></a>
     </ul>
-</div> 
+</div>  -->
 
 
-<h1 class="pt-5 pb-2">List of nutrition info</h1>
+<!-- <h1 class="pt-5 pb-2">List of nutrition info</h1> -->
 
-      <p class="lead alert alert-warning">Here is a list of recipes for this week</p>
+      <!-- <p class="lead alert alert-warning">Here is a list of recipes for this week</p> -->
+    <div class="searchbar">
         {% include 'searchform.html' %}
-        
+    </div>
+
+        {% if data %}
+        <div>there is data</div>
+        {% else %}
+        <div>no data</div>
+        {% endif %}
+
+        <div class="search-middle-content">
+            
         {% for recipe in data %}
-        <div class="card" style="width: 18rem;">
-            <!-- <img class="card-img-top" alt="Card image cap">{{ picture }}</img> -->
-                <div class="card-body">
-                    <h5 class="card-title">{{ recipe.title }}</h5>
-                    <td id="sourceUrl">Recipe link: {{ recipe.sourceUrl }}</td>
-                    {% include 'search_page_buttons.html' %}
+        <div class="card recipe-cards" style = 'width: 18rem;'>
+            <img class="card-img-top recipe-img" alt="Card image cap" src="https://photo-cdn2.icons8.com/d94eJjIkp9-Wo5j4hn-t0GNq_UwBArL21AqWF29ayII/rs:fit:1608:1072/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMzAyLzliY2Vh/MDNmLWRlODUtNDMx/ZC05NzBiLTBjNWM4/M2I0Y2VmYi5qcGc.jpg" ></img>
+                <div class="recipe-card-body">
+                    <h5 class="card recipe-title">{{ recipe.title }}</h5>
+                    <p class="card recipe-title">
+                        <!-- <a href="{{recipe.sourceUrl}}">{{recipe.sourceUrl}}</a> -->
+                    </p>
+                    <div class="search-btns">
+                        <button class="btn btn-warning btn-block"><a href="{{recipe.sourceUrl}}">Get Recipe</a></button>
+                        {% include 'addform.html' %}
+                    </div>
                 </div>
             </div>
-        {% endfor %}
+        {% endfor %}  
+        </div>
 
 
 

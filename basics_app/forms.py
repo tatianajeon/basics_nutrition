@@ -8,20 +8,19 @@ class UserLoginForm(FlaskForm):
     password = PasswordField('Password', validators = [DataRequired()])
     submit_button = SubmitField()
 
-    
+class searchForm(FlaskForm):
+    search = StringField('search', validators=[DataRequired()])
+    search_button = SubmitField()
+
+class getRecipe(FlaskForm):
+    get_recipe = SubmitField()
+
+class addRecipe(FlaskForm):
+    add_recipe = SubmitField()
+        
 # class UserSignUpForm(FlaskForm):
 #     first_name = StringField('First Name', validators = [DataRequired()])
 #     last_name = StringField('Last Name', validators = [DataRequired()])
 #     email = StringField('Email', validators = [DataRequired(), Email()])
 #     password = PasswordField('Password', validators = [DataRequired()])
 #     submit_button = SubmitField()
-
-
-class SubmitForm(FlaskForm):
-    search = StringField('search', validators=[DataRequired()])
-    submit_button = SubmitField()
-
-
-class AddContentForm(FlaskForm):
-    submit_button = SubmitField('get recipe')
-    submit_button = SubmitField('add recipe')

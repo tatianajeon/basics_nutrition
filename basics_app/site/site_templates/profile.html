@@ -18,20 +18,25 @@
 </div>
 
 <header class="hero-section">
-    <h3 class="header-text">Welcome to My Recipes {{ current_user.email }}</h3>
+    <h3 class="header-text">saved</h3>
 </header>
 
-<div class="container">
+<!-- <div class="container">
     <h3>Your user info</h3>
     <ul class="list-group">
         <li class="list-group-item">Email: {{ current_user.email }}</li>
         <li class="list-group-item">Token: {{ current_user.token }}</li>
-        <a href = "#" id="sourceLink"></a>
     </ul>
-</div> 
+</div>  -->
+
+{% if data %}
+<div>there is data</div>
+{% else %}
+<div>no data</div>
+{% endif %}
 
 
-<h1 class="pt-5 pb-2">Saved Searcheso</h1>
+<h1 class="pt-5 pb-2">Saved Recipes</h1>
 
 {% for recipe in recipes  %}
 <div class="card surfboard-collection" style="width: 18rem;">
@@ -45,10 +50,6 @@
     </div>
   </div>
 {% endfor %}
-
-
-
-
 
 
 {% endblock content %}
