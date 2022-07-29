@@ -45,11 +45,8 @@ def search():
             #     recipeLinks = data[i]['sourceUrl']
             #     print(recipeLinks)
 
-    # if request.method == 'GET' and get_form.validate_on_submit():
 
-    #             print('hello this is not needed')
-
-    # if request.method == 'POST' and add_form.validate_on_submit():
+    # if request.method == 'GET' and add_form.validate_on_submit():
     #     return add_recipe(data['results'])
 
     return render_template('search.html', search_form=search_form, add_form=add_form, data=data, imglink = "https://spoonacular.com/recipeImages/")

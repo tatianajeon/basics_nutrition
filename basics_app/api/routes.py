@@ -3,6 +3,7 @@ from basics_app.forms import addRecipe
 from basics_app.helpers import token_required
 from flask_login.utils import login_required
 from basics_app.models import db, User, recipe_schema, recipes_schema, Recipe
+import requests
 
 api = Blueprint('api', __name__, url_prefix = '/api')
 
@@ -14,13 +15,17 @@ def getdata(current_user_token):
 # Add (Create) recipe in RestAPI
 @api.route('/recipes', methods = ['POST'])
 @token_required
-@login_required
-def add_recipe(current_user_token):
+def add_recipe(current_user_token, id):
     add_form = addRecipe()
+    api_key = "e29ffbb6685f4b6bae241bd6d5cc4e35"
     if request.method == 'POST' and add_form.validate_on_submit():
+        id = add_form.add_recipe.data
+        r = requests.get(f"https://api.spoonacular.com/recipes/{id}/information?apiKey={api_key}")
+        if r.status_code == 200:
+            data = r.json()
+            data = data['results']
 
         # pull specific recipe from API
-
             id = request.json['id']
             name = request.json['name']
             title = request.json['title']
