@@ -242,18 +242,17 @@ body{
 .login-box{
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     padding-bottom: 200px;
     border-radius: 25px;
-    background-size: cover;
-    background-position: bottom;
-
+    padding-top: 50px;
 }
 
 
-#email-field{
+#email-field, #pass-field, #fname-field, #lname-field{
     width: 300px;
+    padding: 10px;
 }
 
 .signuptitle{

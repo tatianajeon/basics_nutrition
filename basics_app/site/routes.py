@@ -7,7 +7,7 @@ from basics_app.helpers import token_required
 from sqlalchemy import values
 from basics_app.api.routes import add_recipe
 from basics_app.forms import addRecipe, searchForm, getRecipe
-from basics_app.models import db, User, recipe_schema, recipes_schema, Recipe
+from basics_app.models import User, Recipe
 import requests
 
 site = Blueprint('site', __name__, template_folder = 'site_templates', url_prefix = '/')
@@ -39,10 +39,6 @@ def search():
             #     rr = requests.get(f"https://spoonacular.com/recipeImages/{img}")
             #     apiImg = rr.json()
 
-            # for i in range(len(data)):
-            #     recipeLinks = data[i]['sourceUrl']
-            #     print(recipeLinks)
-
 
     if add_form.validate_on_submit():
         print('nothing happens')
@@ -56,6 +52,9 @@ def search():
 def profile():
     response = Recipe.query.all()
     return render_template('profile.html', response = response)
+
+
+
 
 
 # @site.route('profile')

@@ -7,6 +7,8 @@ class UserLoginForm(FlaskForm):
     email = StringField('Email', validators = [DataRequired(), Email()])
     password = PasswordField('Password', validators = [DataRequired()])
     submit_button = SubmitField()
+    first_name = StringField('First Name')
+    last_name = StringField('Last Name')
 
 class searchForm(FlaskForm):
     search = StringField('search', validators=[DataRequired()])

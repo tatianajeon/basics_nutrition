@@ -2,15 +2,6 @@
     {{ form.hidden_tag() }}
     <div class="login-box">
       <div class="login name-field">
-        <fieldset id="fname-field">
-            {{ form.first_name.label }}
-            {{ form.first_name(class="form-control", placeholder="First name" )}}
-        </fieldset>
-        <fieldset id="lname-field">
-            {{ form.last_name.label }}
-            {{ form.last_name(class="form-control", placeholder="Last name" )}}
-        </fieldset>
-      </div>  
         <fieldset id="email-field">
             {{ form.email.label }}
             {{ form.email(class = "form-control", placeholder= "Enter email here...") }}
@@ -20,7 +11,6 @@
             {{ form.password(class= "form-control", placeholder= "Enter password here...")}}
         </fieldset>
         <div id="login-submit-btn">
-            
             {{ form.submit_button(class="btn btn-primary btn-block") }}
         </div>
     </div>

@@ -2,7 +2,7 @@ from xml.dom.minidom import Element
 from flask import Blueprint, request, jsonify, render_template
 from basics_app.forms import addRecipe
 from basics_app.helpers import token_required
-from flask_login.utils import login_required
+# from flask_login.utils import login_required
 from basics_app.models import db, User, recipe_schema, recipes_schema, Recipe
 import requests
 
