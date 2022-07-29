@@ -6,30 +6,27 @@
     {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
             {% for cat, msg in messages %}
-                {% if cat == 'user-created' %}
-                <div class="container">
-                    {{ msg }}
-                    <button type="button" class="close" data-dismiss = "alert" onclick="this.parentElement.style.display='none'">&times;
-                    </button>
-            </div>
+                {% if cat == 'auth-success' %}
+                <div class="alert alert-warning alert-dismissible fade show login-notification" role="alert">
+                    <strong>Success!</strong> You've logged into your account. Enjoy!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
                 {% endif %}
             {% endfor %}
         {% endif %}
-    {% endwith %}
+    {% endwith %} 
 </div>
 
 
 <main class="container">
-    <div class="row login">
-        <h1>Log In Here</h1>
-    </div>
     <div class="row">
-        <aside class="col-12 col-md-6 signin-box">
-            <h2>Sign In to Your Account</h2>
+        <h2 class="signintitle">Sign In</h2>
+        <aside class="col signin-box">
             {% include 'forms.html' %}
         </aside>
     </div>
 </main>
+
 
 
 {% endblock content %}

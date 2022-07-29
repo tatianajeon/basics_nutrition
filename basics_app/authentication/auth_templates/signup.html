@@ -2,15 +2,16 @@
 
 {% block content %}
 
-    <h1>Sign Up Here</h1>
-    <main class="container">
-        <div class="row">
-            <aside class="col-12 col-md-6">
-                <h2>Sign Up For Free</h2>
-                {% include 'forms.html' %}
-            </aside>
-        </div>
-    </main>
+<main class="container">
+    <div class="row">
+        <h2 class="signuptitle">Sign Up</h2>
+        <aside class="col signin-box">
+            {% include 'forms.html' %}
+        </aside>
+    </div>
+</main>
+
+
 
 {% endblock content %}
 

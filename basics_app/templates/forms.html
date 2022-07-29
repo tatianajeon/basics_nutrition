@@ -1,14 +1,14 @@
 <form method = "POST">
     {{ form.hidden_tag() }}
-    <div class="form-group">
+    <div class="login-box">
         <fieldset id="email-field">
-            {{ form.email.label }}
             {{ form.email(class = "form-control", placeholder= "Enter email here...") }}
-        </fieldset>
+        </fieldset>&nbsp;&nbsp;
         <fieldset id="pass-field">
-            {{ form.password.label }}
             {{ form.password(class= "form-control", placeholder= "Enter password here...")}}
-        </fieldset>
-        {{ form.submit_button(class="btn btn-primary btn-block") }}
+        </fieldset>&nbsp;&nbsp;
+        <div id="login-submit-btn">
+            {{ form.submit_button(class="btn btn-primary btn-block") }}
+        </div>
     </div>
 </form>

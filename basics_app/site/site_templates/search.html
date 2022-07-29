@@ -39,32 +39,30 @@
         {% include 'searchform.html' %}
     </div>
 
-        {% if data %}
+        <!-- {% if data %}
         <div>there is data</div>
         {% else %}
         <div>no data</div>
-        {% endif %}
+        {% endif %} -->
 
         <div class="search-middle-content">
+
             
-        {% for recipe in data %}
-        <div class="card recipe-cards" style = 'width: 18rem;'>
-            <img class="card-img-top recipe-img" alt="Card image cap" src="https://photo-cdn2.icons8.com/d94eJjIkp9-Wo5j4hn-t0GNq_UwBArL21AqWF29ayII/rs:fit:1608:1072/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMzAyLzliY2Vh/MDNmLWRlODUtNDMx/ZC05NzBiLTBjNWM4/M2I0Y2VmYi5qcGc.jpg" ></img>
-                <div class="recipe-card-body">
-                    <h5 class="card recipe-title">{{ recipe.title }}</h5>
-                    <p class="card recipe-title">
-                        <!-- <a href="{{recipe.sourceUrl}}">{{recipe.sourceUrl}}</a> -->
-                    </p>
+            {% for recipe in data %}
+            <div class="card recipe-cards">
+                {% if recipe.image %}
+                {% set imageLink = [imglink, recipe.image] %}
+                <img class="card-img-top" src="{{ imageLink|join('') }}" alt="Card image cap">
+                {% endif %}
+                <h5 class="card-header recipe-title">{{recipe.title}}</h5>
+                <div class="card-body recipe-body">
+                    <h5 class="card-title readyin">Ready in {{recipe.readyInMinutes}} minutes</h5>
+                    <p class="card-text">serving size: {{ recipe.servings }}</p>
                     <div class="search-btns">
-                        <button class="btn btn-warning btn-block"><a href="{{recipe.sourceUrl}}">Get Recipe</a></button>
-                        {% include 'addform.html' %}
+                        <button class="btn btn-outline-warning btn-block getRecipe"><a href="{{recipe.sourceUrl}}">Get Recipe</a></button>
                     </div>
                 </div>
-            </div>
-        {% endfor %}  
-        </div>
-
-
-
-
+              </div>
+            {% endfor %}  
+              
 {% endblock content %}

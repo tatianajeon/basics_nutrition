@@ -1,8 +1,6 @@
 /* Body */
 body{
     background-color: #8fc063;
-    margin: 50px;
-
 }
 
 /*Nav Styles */
@@ -22,15 +20,24 @@ body{
     font-size: 25px;
 }
 
+.nav-item p{
+    text-align: center;
+    color: white;
+    background-color: #ccc;
+    padding: 1em;
+}
+
+.nav-item p:hover{
+    background-color: #333;
+    padding: 2em;
+}
 
 /* Start of Hero/Header Section */
 
 .header-text{
-    margin: 0;
-    padding-top: 200px;
     font-size: 300px;
     color: rgba(225, 225, 225, 0.01);
-    background-image: url(../images/vietnamese.png);
+    background-image: url(../images/breakfast.png);
     min-height: 300px;
     background-attachment: fixed;
     background-position: center;
@@ -44,12 +51,14 @@ body{
 
 
 
+/* Start of Home Page Middle Section */
 
-/* End of Hero/Header Section */
-
-/* Start of Middle Section Styles */
+.middle-section{
+    margin: 50px
+}
 
 .rimage, .limage, .l-info, .r-info{
+    align-items: center;
     background-color: transparent;
     border: none;
     padding-bottom:100px;
@@ -61,23 +70,14 @@ body{
     filter: drop-shadow(0 0 30px rgb(86, 85, 85));
 }
 
-#peep99{
+#peep96{
     height: 500px;
     filter: drop-shadow(0 0 30px rgb(86, 85, 85));
 }
 
-.card-body{
-    color: white;
-    text-align: center;
-}
-
 .info-text{
-    padding-top: 200px;
-}
-
-.intro-vid{
-    display: flex;
-    justify-content: center;
+    padding-top: 125px;
+    color: white;
 }
 
 .video-title{
@@ -88,25 +88,47 @@ body{
     padding-top: 100px;
 }
 
-
-/* End of Middle Section Styles */
-
-/* Start of Features Section Styles */
-
-#features-section{
-    margin: 8vw;
+.intro-vid{
+    display: flex;
+    justify-content: center;
 }
-/* End of Features Section */
 
-/* Community Section Styles */
 
-/* End of Community Section */
+
+/* search page */
+
+.search-middle-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.recipe-body{
+    display:flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+}
+
+.getRecipe a:link{
+    color: white;
+    text-decoration: none;
+}
+
+.getRecipe a:visited{
+    color:#ff7b37;
+    text-decoration: none;
+}
+
+
 
 /* Footer Section Styles */
 .footer-text-flex{
-    display: flex;
-    flex-direction: column;
     margin-top: 3vw;
+    width: max-content;
 }
 
 #footer-logo{
@@ -115,21 +137,160 @@ body{
 }
 
 #footer{
-    border-top: 3px solid black;
-    margin-top: 20vh;
-}
-
-.list_recipes{
-    display: flex;
+    flex-direction: row;
     justify-content: center;
+    border-top: 1px dashed #c9d7d8;
+    margin-top: 20vh;
+    padding-bottom: 100px;
 }
 
+.footer-text-flex p{
+    display: inline;
+    justify-content: space-around;
+    color: #c9d7d8
+}
 
 
 /* search page */
 .search-header-title{
+    padding-top: 100px;
+    font-size: 250px;
+    color: rgba(225, 225, 225, 0.01);
+    background-image: url(../images/middleeastern.png);
+    min-height: 300px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    -webkit-background-clip: text;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.search-header-text, .profile-header-text{
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding-bottom: 100px;
+}
+
+.searchbar{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 50px;
+}
+
+.search-field{
+    width: 500px; 
+}
+
+
+.recipe-cards{
+    display: flex;
+    justify-content: center;
+    background-color: #005069;
+    border: none;
+    margin: 50px;
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 20px -16px #7aa454c8;
+}
+
+.card-img-top{
+    border-radius: 20px 20px 0px 0px;
+}
+
+.recipe-img{
+    border-radius: 20px;
+    height: 200px;
+}
+
+.recipe-title{
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background-color: #96a7ad87;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#get-recipe-btn{
+    background: #c9d7d8;
+    border: none;
+}
+
+
+
+.login-box{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 200px;
+    border-radius: 25px;
+    background-size: cover;
+    background-position: bottom;
+
+}
+
+
+#email-field{
+    width: 300px;
+}
+
+.signuptitle{
     margin: 0;
-    padding-top: 200px;
+    padding-top: 100px;
+    font-size: 100px;
+    color: rgba(225, 225, 225, 0.01);
+    background-image: url(../images/watercolor-oranges.png);
+    min-height: 300px;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat:no-repeat;
+    background-size: cover;
+    -webkit-background-clip: text;
+    animation: animate 15s ease-in-out infinite;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+
+.signintitle{
+    margin: 0;
+    padding-top: 100px;
+    font-size: 100px;
+    color: rgba(225, 225, 225, 0.01);
+    background-image: url(../images/watercolor-lemons.png);
+    min-height: 300px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: cover;
+    -webkit-background-clip: text;
+    animation: animate 15s ease-in-out infinite;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+@keyframes animate {
+    0%,
+    100% {background-position: left top;}
+    25% {background-position: right bottom;}
+    50% {background-position: left bottom;}
+    75% {background-position: right top;}
+}
+
+
+/* profile */
+.profile-header-title{
+    padding-top: 100px;
     font-size: 250px;
     color: rgba(225, 225, 225, 0.01);
     background-image: url(../images/vietnamese.png);
@@ -142,63 +303,4 @@ body{
     text-align: center;
     text-transform: uppercase;
     font-weight: 900;
-}
-
-.search-header-text{
-    display: flex;
-    justify-content: center;
-    color: white;
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-
-.searchbar{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.search-field{
-    width: 500px; 
-    background-color:#ffc34e !important;
-}
-
-
-.recipe-cards{
-    display: flex;
-    background-color: transparent;
-    border: none;
-    margin: 100px;
-    height: 200px;
-}
-
-.recipe-img{
-    border-radius: 20px;
-    height: 200px;
-}
-
-.recipe-card-body{
-    width: 300px;
-}
-
-.recipe-title{
-    display:flex;
-    text-align: center;
-    color: white;
-    background-color: transparent;
-    border: none;
-    padding: 10px;
-}
-
-
-.search-middle-content{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.search-btns{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
 }

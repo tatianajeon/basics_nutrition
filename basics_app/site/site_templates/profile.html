@@ -18,7 +18,7 @@
 </div>
 
 <header class="hero-section">
-    <h3 class="header-text">saved</h3>
+    <h3 class="profile-header-title">saved</h3>
 </header>
 
 <!-- <div class="container">
@@ -29,16 +29,10 @@
     </ul>
 </div>  -->
 
-{% if data %}
-<div>there is data</div>
-{% else %}
-<div>no data</div>
-{% endif %}
 
+<h1 class="pt-5 pb-2 profile-header-text">Coming Soon</h1>
 
-<h1 class="pt-5 pb-2">Saved Recipes</h1>
-
-{% for recipe in recipes  %}
+{% for recipe in response  %}
 <div class="card surfboard-collection" style="width: 18rem;">
     <img class="card-img-top collection-img" src="#" alt="Card image cap">
     <div class="card-body">
