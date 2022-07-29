@@ -20,17 +20,22 @@ body{
     font-size: 25px;
 }
 
-.nav-item p{
-    text-align: center;
-    color: white;
-    background-color: #ccc;
-    padding: 1em;
-}
-
-.nav-item p:hover{
-    background-color: #333;
-    padding: 2em;
-}
+.nav-item a:hover{
+    --c: #528b66; /* the color */
+    
+    color:#ffc34e;
+    background: 
+      linear-gradient(90deg,#fff 50%,var(--c) 0) calc(100% - var(--_p,0%))/200% 100%,
+      linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) 100% no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
+    border-radius: 25%;
+  }
+  .nav-item a:hover{
+    --_p: 100%
+  }
+  
 
 /* Start of Hero/Header Section */
 
@@ -124,6 +129,20 @@ body{
 }
 
 
+.search-btns{
+    display: flex;
+    flex-direction: row;
+}
+
+.add-btn a:link{
+    color: white;
+}
+
+.add-btn a:visited{
+    color: #60868a;
+}
+
+
 
 /* Footer Section Styles */
 .footer-text-flex{
@@ -154,7 +173,7 @@ body{
 /* search page */
 .search-header-title{
     padding-top: 100px;
-    font-size: 250px;
+    font-size: 200px;
     color: rgba(225, 225, 225, 0.01);
     background-image: url(../images/middleeastern.png);
     min-height: 300px;
@@ -202,11 +221,6 @@ body{
     border-radius: 20px 20px 0px 0px;
 }
 
-.recipe-img{
-    border-radius: 20px;
-    height: 200px;
-}
-
 .recipe-title{
     display:flex;
     justify-content: center;
@@ -245,7 +259,7 @@ body{
 .signuptitle{
     margin: 0;
     padding-top: 100px;
-    font-size: 100px;
+    font-size: 200px;
     color: rgba(225, 225, 225, 0.01);
     background-image: url(../images/watercolor-oranges.png);
     min-height: 300px;
@@ -264,7 +278,7 @@ body{
 .signintitle{
     margin: 0;
     padding-top: 100px;
-    font-size: 100px;
+    font-size: 200px;
     color: rgba(225, 225, 225, 0.01);
     background-image: url(../images/watercolor-lemons.png);
     min-height: 300px;
@@ -291,7 +305,7 @@ body{
 /* profile */
 .profile-header-title{
     padding-top: 100px;
-    font-size: 250px;
+    font-size: 200px;
     color: rgba(225, 225, 225, 0.01);
     background-image: url(../images/vietnamese.png);
     min-height: 300px;

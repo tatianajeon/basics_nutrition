@@ -1,3 +1,4 @@
+from xml.dom.minidom import Element
 from flask import Blueprint, request, jsonify, render_template
 from basics_app.forms import addRecipe
 from basics_app.helpers import token_required
@@ -15,11 +16,12 @@ def getdata(current_user_token):
 # Add (Create) recipe in RestAPI
 @api.route('/recipes', methods = ['POST'])
 @token_required
-def add_recipe(current_user_token, id):
+def add_recipe(current_user_token):
     add_form = addRecipe()
     api_key = "e29ffbb6685f4b6bae241bd6d5cc4e35"
     if request.method == 'POST' and add_form.validate_on_submit():
         id = add_form.add_recipe.data
+        print(id)
         r = requests.get(f"https://api.spoonacular.com/recipes/{id}/information?apiKey={api_key}")
         if r.status_code == 200:
             data = r.json()
@@ -41,14 +43,13 @@ def add_recipe(current_user_token, id):
     response = recipe_schema.dump(recipe)
     return jsonify(response)
 
-# retrieve all recipes 
-@api.route('/recipes', methods = ['GET'])
-@token_required
-def get_recipes(current_user_token):
-    user = current_user_token.token
-    recipes = Recipe.query.filter_by(user_token = user).all()
-    response = jsonify(recipes_schema.dump(recipes))
-    return render_template('profile.html', response = response)
+# @site.route('/profile', methods = ['GET'])
+# @token_required
+# def get_recipes(current_user_token):
+#     user = current_user_token.token
+#     recipes = Recipe.query.filter_by(user_token = user).all()
+#     response = jsonify(recipes_schema.dump(recipes))
+#     return render_template('profile.html', response = response)
 
 
 @api.route('/recipes/<id>', methods=['DELETE'])

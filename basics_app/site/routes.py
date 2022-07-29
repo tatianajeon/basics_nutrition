@@ -3,13 +3,14 @@ from tokenize import String
 from typing import Any
 from flask import Flask, Blueprint, render_template, request, redirect, url_for, flash, jsonify, json
 from flask_login.utils import login_required
+from basics_app.helpers import token_required
 from sqlalchemy import values
 from basics_app.api.routes import add_recipe
 from basics_app.forms import addRecipe, searchForm, getRecipe
-from basics_app.models import Recipe
+from basics_app.models import db, User, recipe_schema, recipes_schema, Recipe
 import requests
 
-site = Blueprint('site', __name__, template_folder = 'site_templates')
+site = Blueprint('site', __name__, template_folder = 'site_templates', url_prefix = '/')
 api_key = "e29ffbb6685f4b6bae241bd6d5cc4e35"
 
 @site.route('/')
@@ -23,11 +24,8 @@ def home():
 def search():
     api_key = "e29ffbb6685f4b6bae241bd6d5cc4e35"
     search_form = searchForm()
-    # get_form = getRecipe()
     add_form = addRecipe()
     data = jsonify(request.form).json
-    # apiImg = jsonify(request.form).json
-    # recipeLinks = jsonify(request.form).json
     
     if request.method == 'POST' and search_form.validate_on_submit():
         name = search_form.search.data
@@ -46,24 +44,29 @@ def search():
             #     print(recipeLinks)
 
 
-    # if request.method == 'GET' and add_form.validate_on_submit():
-    #     return add_recipe(data['results'])
+    if add_form.validate_on_submit():
+        print('nothing happens')
 
-    return render_template('search.html', search_form=search_form, add_form=add_form, data=data, imglink = "https://spoonacular.com/recipeImages/")
-
-
-# def get_recipe(recipeLinks):
-#     for recipeLink in recipeLinks:
-#         return render_template('getform.html') and redirect(url_for(recipeLink))
+    return render_template('search.html', search_form=search_form, data=data, add_form=add_form, imglink = "https://spoonacular.com/recipeImages/")
 
 
-
-# store recipe in user account
+# display recipe in user account
 @site.route('/profile', methods = ['GET'])
 @login_required
 def profile():
-    # add_form = addRecipe()
-    # recipes =jsonify(request.form).json
-    # if request.method == 'GET' and add_form.validate_on_submit():
-    #     recipes = Recipe.query.all()
-        return render_template('profile.html')
+    response = Recipe.query.all()
+    return render_template('profile.html', response = response)
+
+
+# @site.route('profile')
+# @token_required
+# def profile(current_user_token):
+#     user = current_user_token.token
+#     return render_template('profile.html', user=user)
+
+
+# @site.route('/profile', methods = ['GET'])
+# @login_required
+# def profile():
+#     recipe = Recipe.query.all()
+#     return render_template('profile.html', recipe = recipe)

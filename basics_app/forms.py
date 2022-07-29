@@ -16,6 +16,7 @@ class getRecipe(FlaskForm):
     get_recipe = SubmitField()
 
 class addRecipe(FlaskForm):
+    id = StringField()
     add_recipe = SubmitField()
         
 # class UserSignUpForm(FlaskForm):
