@@ -26,6 +26,7 @@ class User(db.Model, UserMixin):
     g_auth_verify = db.Column(db.Boolean,default = False) 
     token = db.Column(db.String, default = '', unique = True)
     date_create = db.Column(db.DateTime, nullable = False, default = datetime.utcnow) 
+    recipe = db.relationship('Recipe', backref = 'owner', lazy = True)
 
     def __init__(self, email, first_name = '', last_name = '', id = '', password = '', token = '',   g_auth_verify = False):
         self.id = self.set_id()
@@ -52,23 +53,25 @@ class User(db.Model, UserMixin):
 
 
 class Recipe(db.Model):
-    id = db.Column(db.String, primary_key=True)
-    name = db.Column(db.String(150))
+    id = db.Column(db.String, primary_key = True)
     title = db.Column(db.String(150))
-    sourceUrl = db.Column(db.String(150))
+    readyInMinutes = db.Column(db.String(150))
+    servingSize = db.Column(db.String(150))
     image = db.Column(db.String(150))
+    sourceUrl = db.Column(db.String(150))
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self, name, title, image, sourceUrl, user_token = user_token, id =''):
+    def __init__(self, title, readyInMinutes, servingSize, sourceUrl, image, user_token = user_token, id = ''):
         self.id = self.set_id()
-        self.name = name
         self.title = title
-        self.image = image
+        self.readyInMinutes = readyInMinutes
+        self.servingSize = servingSize
         self.sourceUrl = sourceUrl
+        self.image = image
         self.user_token = user_token
 
-    def __repr__(self):
-        return f"{self.title} has been added"
+    # def __repr__(self):
+    #     return f"{self.title} has been added"
 
     def set_id(self):
         return secrets.token_urlsafe()
@@ -76,7 +79,7 @@ class Recipe(db.Model):
 
 class RecipeSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'name', 'title', 'image', 'sourceUrl']
+        fields = ['id', 'title', 'readyInMinutes', 'servingSize', 'sourceUrl', 'image']
 
 recipe_schema = RecipeSchema()
 recipes_schema = RecipeSchema(many = True)

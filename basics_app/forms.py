@@ -6,24 +6,29 @@ from wtforms.validators import DataRequired, Email
 class UserLoginForm(FlaskForm):
     email = StringField('Email', validators = [DataRequired(), Email()])
     password = PasswordField('Password', validators = [DataRequired()])
-    submit_button = SubmitField()
+    submit_button = SubmitField('Submit')
     first_name = StringField('First Name')
     last_name = StringField('Last Name')
 
 class searchForm(FlaskForm):
     search = StringField('search', validators=[DataRequired()])
-    search_button = SubmitField()
+    search_button = SubmitField('Find')
 
 class getRecipe(FlaskForm):
     get_recipe = SubmitField()
 
 class addRecipe(FlaskForm):
-    id = StringField()
-    add_recipe = SubmitField()
-        
-# class UserSignUpForm(FlaskForm):
-#     first_name = StringField('First Name', validators = [DataRequired()])
-#     last_name = StringField('Last Name', validators = [DataRequired()])
-#     email = StringField('Email', validators = [DataRequired(), Email()])
-#     password = PasswordField('Password', validators = [DataRequired()])
-#     submit_button = SubmitField()
+    title = StringField('title', validators=[DataRequired()])
+    image = StringField('image', validators=[DataRequired()])
+    readyInMinutes = StringField('readyInMinutes', validators=[DataRequired()])
+    sourceUrl = StringField('sourceUrl', validators=[DataRequired()])
+    servingSize = StringField('servingSize', validators=[DataRequired()])
+    submit_button = SubmitField()
+
+class deleteRecipe(FlaskForm):
+    title = StringField('title', validators=[DataRequired()])
+    image = StringField('image', validators=[DataRequired()])
+    readyInMinutes = StringField('readyInMinutes', validators=[DataRequired()])
+    sourceUrl = StringField('sourceUrl', validators=[DataRequired()])
+    servingSize = StringField('servingSize', validators=[DataRequired()])
+    submit_button = SubmitField()

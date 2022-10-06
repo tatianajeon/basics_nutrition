@@ -22,14 +22,27 @@
     <h3 class= "search-header-text">for your next meal</h3>
 </header>
 
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories = true) %}
+      {% if messages %}
+          {% for cat, msg in messages %}
+              {% if cat == 'auth-success' %}
+              <div class="alert alert-warning alert-dismissible fade show login-notification" role="alert">
+                  <strong>Success!</strong> You've logged into your account. Enjoy!
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endif %}
+          {% endfor %}
+      {% endif %}
+  {% endwith %} 
+</div>
+
 
     <div class="searchbar">
         {% include 'searchform.html' %}
     </div>
 
-
         <div class="search-middle-content">
-
             
             {% for recipe in data %}
             <div class="card recipe-cards">
@@ -44,12 +57,17 @@
                     <div class="search-btns">
                         <button class="btn btn-outline-warning btn-block getRecipe"><a href="{{recipe.sourceUrl}}">Get Recipe</a></button>&nbsp;&nbsp;
                         {% include 'addform.html' %}
+          
+                      </div>
                     </div>
-                </div>
-              </div>
-            {% endfor %} 
+                  </div>
+              {% endfor %} 
+            
         </div>
             
+
+
+        
     <!--Start of Footer-->
     <footer class="row" id="footer">
 

@@ -21,29 +21,40 @@
     <h3 class="profile-header-title">saved</h3>
 </header>
 
-<!-- <div class="container">
-    <h3>Your user info</h3>
-    <ul class="list-group">
-        <li class="list-group-item">Email: {{ current_user.email }}</li>
-        <li class="list-group-item">Token: {{ current_user.token }}</li>
-    </ul>
-</div>  -->
+{% if response %}
+<div>data showing up</div>
+{% else %}
+<div>no data</div>
+{% endif%}
+
+{% if response %}
+<div class="search-middle-content">
+{% for recipe in response %}
+    <div class="card recipe-cards">
+        {% if recipe.image %}
+        {% set imageLink = ["https://spoonacular.com/recipeImages/", recipe.image] %}
+        <img class="card-img-top recipe-img" src="{{ imageLink|join('') }}" alt="Card image cap">
+        {% endif %}
+        <h5 class="card-header recipe-title">{{recipe.title}}</h5>
+        <div class="card-body recipe-body">
+            <h5 class="card-title readyin">Ready in {{recipe.readyInMinutes}} minutes</h5>
+            <p class="card-text">serving size: {{ recipe.servings }}</p>
+            <div class="search-btns">
+                <button class="btn btn-outline-warning btn-block getRecipe"><a href="{{recipe.sourceUrl}}">Get Recipe</a></button>&nbsp;&nbsp;
+            </div>
+            {% include 'deleteform.html' %}
+
+        </div>
+      </div>
+    {% endfor %} 
 
 
-<h1 class="pt-5 pb-2 profile-header-text">Coming Soon</h1>
-
-{% for recipe in response  %}
-<div class="card surfboard-collection" style="width: 18rem;">
-    <img class="card-img-top collection-img" src="#" alt="Card image cap">
-    <div class="card-body">
-      <p class="card-text">
-        {{ recipe.image }}
-        {{ recipe.title }}
-        {{ recipe.sourceUrl }}
-    </p>
-    </div>
   </div>
-{% endfor %}
+  {% else %}
+  <p class="text-center mt-5">You don't have any recipes saved</p>
+  {% endif %}
+  </div>
+
 
     <!--Start of Footer-->
     <footer class="row" id="footer">
