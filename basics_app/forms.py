@@ -14,8 +14,11 @@ class searchForm(FlaskForm):
     search = StringField('search', validators=[DataRequired()])
     search_button = SubmitField('Find')
 
-class getRecipe(FlaskForm):
-    get_recipe = SubmitField()
+class alertForm(FlaskForm):
+    title = StringField('title', validators=[DataRequired()])
+
+# class getRecipe(FlaskForm):
+#     get_recipe = SubmitField()
 
 class addRecipe(FlaskForm):
     title = StringField('title', validators=[DataRequired()])

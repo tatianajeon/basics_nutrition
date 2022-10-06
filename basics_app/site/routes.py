@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from flask_login.utils import login_required
 from flask_login import current_user
 from sqlalchemy import values
-from basics_app.forms import addRecipe, searchForm, getRecipe, deleteRecipe
+from basics_app.forms import addRecipe, searchForm, deleteRecipe, alertForm
 from basics_app.models import User, Recipe, recipe_schema, recipes_schema
 from basics_app.helpers import save_recipe, delete_recipe, token_required
 import requests
@@ -31,20 +31,21 @@ def search():
         if search_form.validate_on_submit():
             ingredient = search_form.search.data
             print(ingredient)
-            r = requests.get(f"https://api.spoonacular.com/recipes/search?apiKey={api_key}&number=9&query={ingredient}")
+            r = requests.get(f"https://api.spoonacular.com/recipes/search?apiKey={api_key}&number=20&query={ingredient}")
             if r.status_code == 200:
                 data = r.json()
                 data = data['results']
 
         if add_form.validate_on_submit():
             save_recipe()
-            flash('Recipe successfully saved into Profile')
             ingredient = search_form.search.data
+            flash('this is a flash message')
             print('reloading page')
-            r = requests.get(f"https://api.spoonacular.com/recipes/search?apiKey={api_key}&number=9&query={ingredient}")
+            r = requests.get(f"https://api.spoonacular.com/recipes/search?apiKey={api_key}&number=20&query={ingredient}")
             if r.status_code == 200:
                 data = r.json()
                 data = data['results']
+
     
     return render_template('search.html', search_form=search_form, add_form=add_form, data=data, imglink = "https://spoonacular.com/recipeImages/")
 
