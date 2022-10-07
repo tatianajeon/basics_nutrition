@@ -11,6 +11,13 @@ from flask_cors import CORS
 from basics_app.helpers import JSONEncoder
 from logging import FileHandler,WARNING
 
+import os
+
+uri = os.getenv("DATABASE_URL")  # or other relevant config var
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+# rest of connection code using the connection string `uri`
+
 app = Flask(__name__)
 file_handler = FileHandler('errorlog.txt')
 file_handler.setLevel(WARNING)
