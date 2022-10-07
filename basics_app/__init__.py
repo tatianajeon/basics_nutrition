@@ -9,15 +9,14 @@ from .models import db as root_db, login_manager, ma
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from basics_app.helpers import JSONEncoder
+import os
 
-basics_app = Flask(__name__)
+app = Flask(__name__)
 
-@basics_app.route('/')
-def hello_world():
-    return "Hello World!"
+port = int(os.environ.get("PORT", 5000))
 
 if __name__ == '__main__':
-    basics_app.run()
+    app.run(host='0.0.0', port=port, debug=True)
 
 app.register_blueprint(site)
 app.register_blueprint(api)
