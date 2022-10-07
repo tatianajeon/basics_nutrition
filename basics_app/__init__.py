@@ -9,8 +9,11 @@ from .models import db as root_db, login_manager, ma
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from basics_app.helpers import JSONEncoder
+from logging import FileHandler,WARNING
 
 app = Flask(__name__)
+file_handler = FileHandler('errorlog.txt')
+file_handler.setLevel(WARNING)
 
 app.register_blueprint(site)
 # app.register_blueprint(api)
