@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
+from flask import Blueprint, get_flashed_messages, render_template, request, redirect, url_for, flash, jsonify
 from flask_login.utils import login_required
 from flask_login import current_user
 from sqlalchemy import values
@@ -35,10 +35,12 @@ def search():
             save_recipe() 
             ingredient = search_form.search.data
             print('reloading page')
+            flash('Recipe successfully saved', 'save-success')
             r = requests.get(f"https://api.spoonacular.com/recipes/search?apiKey={api_key}&number=20&query={ingredient}")
             if r.status_code == 200:
                 data = r.json()
                 data = data['results']
+
 
     return render_template('search.html', search_form=search_form, add_form=add_form, data=data, imglink = "https://spoonacular.com/recipeImages/")
 

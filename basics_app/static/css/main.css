@@ -100,7 +100,7 @@ body{
 
 
 
-/* search page */
+/* search/profile page */
 
 .search-middle-content{
     display: flex;
@@ -206,6 +206,8 @@ body{
 }
 
 
+/* profile and search recipe cards */
+
 .recipe-cards{
     display: flex;
     justify-content: center;
@@ -232,10 +234,8 @@ body{
     font-size: 20px;
 }
 
-#get-recipe-btn{
-    background: #c9d7d8;
-    border: none;
-}
+
+/* end card details */
 
 
 .login-box{

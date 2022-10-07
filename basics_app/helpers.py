@@ -1,11 +1,12 @@
 from functools import wraps
 import secrets
 from json import JSONEncoder
-from flask import request, jsonify, json, Blueprint, flash
+from flask import request, jsonify, json, Blueprint, flash, get_flashed_messages
 from basics_app.models import RecipeSchema, db, User, Recipe, recipe_schema, recipes_schema
 from basics_app.forms import addRecipe, deleteRecipe
 from flask_login import current_user
 import decimal
+
 
 def token_required(our_flask_function):
     @wraps(our_flask_function)
@@ -62,7 +63,6 @@ def save_recipe():
 
     else:
         print(f'adding {add_recipe.title}')
-        flash('this is a flash message')
         db.session.add(add_recipe)
         db.session.commit()
 

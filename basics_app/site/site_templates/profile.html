@@ -34,9 +34,9 @@
             <h5 class="card-title readyin">Ready in {{recipe.readyInMinutes}} minutes</h5>
             <p class="card-text">serving size: {{ recipe.servings }}</p>
             <div class="search-btns">
-                <button class="btn btn-outline-warning btn-block getRecipe"><a href="{{recipe.sourceUrl}}">Get Recipe</a></button>&nbsp;&nbsp;
+                <button class="btn btn-warning btn-block getRecipe"><a href="{{recipe.sourceUrl}}">Get Recipe</a></button>&nbsp;&nbsp;
+                {% include 'deleteform.html' %}
             </div>
-            {% include 'deleteform.html' %}
 
         </div>
       </div>
