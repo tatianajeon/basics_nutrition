@@ -1,18 +1,18 @@
-from multiprocessing.sharedctypes import Value
-from xml.dom.minidom import Element
-from flask import Blueprint, request, jsonify
-from basics_app.forms import addRecipe
-from basics_app.helpers import token_required
-# from flask_login.utils import login_required
-from basics_app.models import db,recipe_schema, Recipe
-import requests
+# from multiprocessing.sharedctypes import Value
+# from xml.dom.minidom import Element
+# from flask import Blueprint, request, jsonify
+# from basics_app.forms import addRecipe
+# from basics_app.helpers import token_required
+# # from flask_login.utils import login_required
+# from basics_app.models import db,recipe_schema, Recipe
+# import requests
 
-api = Blueprint('api', __name__, url_prefix = '/api')
+# api = Blueprint('api', __name__, url_prefix = '/api')
 
-@api.route('/getdata')
-@token_required
-def getdata(current_user_token):
-    return{'some':'value'}
+# @api.route('/getdata')
+# @token_required
+# def getdata(current_user_token):
+#     return{'some':'value'}
 
 
 
