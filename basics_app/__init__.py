@@ -10,14 +10,14 @@ from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from basics_app.helpers import JSONEncoder
 
-app = Flask(__name__)
+basics_app = Flask(__name__)
 
-@app.route('/')
+@basics_app.route('/')
 def hello_world():
     return "Hello World!"
 
 if __name__ == '__main__':
-    app.run()
+    basics_app.run()
 
 app.register_blueprint(site)
 app.register_blueprint(api)
