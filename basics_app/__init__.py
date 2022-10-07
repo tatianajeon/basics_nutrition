@@ -12,6 +12,9 @@ from basics_app.helpers import JSONEncoder
 
 app = Flask(__name__)
 
+if __name__ == '__main__':
+    app.run()
+
 app.register_blueprint(site)
 app.register_blueprint(api)
 app.register_blueprint(auth)
