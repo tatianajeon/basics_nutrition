@@ -7,7 +7,6 @@ import secrets
 from flask_login import UserMixin, LoginManager
 from flask_marshmallow import Marshmallow
 
-
 db = SQLAlchemy()
 login_manager = LoginManager()
 ma = Marshmallow()
