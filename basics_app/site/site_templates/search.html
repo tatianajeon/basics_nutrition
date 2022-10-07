@@ -4,9 +4,11 @@
 
 {% with messages = get_flashed_messages() %}
  {% if messages %}
-  {% include 'alert.html' %}
+  {% include 'success.html' %}
  {% endif %}
 {% endwith %}
+
+
 
 <header class="hero-section">
     <h3 class="search-header-title">Search</h3>
@@ -24,7 +26,7 @@
                 {% if recipe.image %}
                 {% set imageLink = [imglink, recipe.image] %}
                 <img class="card-img-top recipe-img" src="{{ imageLink|join('') }}" alt="Card image cap">
-                {% endif %}
+                {% endif %} 
                 <h5 class="card-header recipe-title">{{recipe.title}}</h5>
                 <div class="card-body recipe-body">
                     <h5 class="card-title readyin">Ready in {{recipe.readyInMinutes}} minutes</h5>
@@ -32,7 +34,6 @@
                     <div class="search-btns">
                         <button class="btn btn-outline-warning btn-block getRecipe"><a href="{{recipe.sourceUrl}}">Get Recipe</a></button>&nbsp;&nbsp;
                         {% include 'addform.html' %}
-          
                       </div>
                     </div>
                   </div>

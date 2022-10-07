@@ -13,11 +13,6 @@ site = Blueprint('site', __name__, template_folder = 'site_templates', url_prefi
 def home():
     return render_template('index.html')
 
-# @site.route('/getdata')
-# @token_required
-# def getdata(current_user_token):
-#     return{'some':'value'}
-
 # bring in recipes from API
 @site.route('/search', methods = ['POST', 'GET'])
 @login_required
@@ -37,51 +32,37 @@ def search():
                 data = data['results']
 
         if add_form.validate_on_submit():
-            save_recipe()
+            save_recipe() 
             ingredient = search_form.search.data
-            flash('this is a flash message')
             print('reloading page')
             r = requests.get(f"https://api.spoonacular.com/recipes/search?apiKey={api_key}&number=20&query={ingredient}")
             if r.status_code == 200:
                 data = r.json()
                 data = data['results']
 
-    
     return render_template('search.html', search_form=search_form, add_form=add_form, data=data, imglink = "https://spoonacular.com/recipeImages/")
-
-
-# save recipe to profile
-# @site.route('/search', methods = ['GET','POST'])
-# @login_required
-# def save():
-#     add_form = addRecipe()
-
-#     if request.method == 'POST' and add_form.validate_on_submit():
-#         save_recipe()
-#         flash('Recipe saved to your profile')
-#         return redirect(url_for('site.profile'))
-    
-
 
 
 # delete recipe
 @site.route('/profile', methods =['GET', 'POST'])
 @login_required
 def profile():
+    print("hello this is the profile section")
     delete_form = deleteRecipe()
+    title = delete_form.title.data
 
-    if request.method =='POST' and delete_form.validate_on_submit():
-        print('processing delete button')
+    if request.method =='POST':
+        print("I know you pressed the button")
+        print(title)
         delete_recipe()
 
-    owner = current_user.token
-    recipes = Recipe.query.all()
-    response = recipes_schema.dump(recipes)
+    lst = Recipe.query.all()
+    response = recipes_schema.dump(lst)
 
-    # if response: 
-    #     print(response[0]['title'])
-    #     for recipe in response:
-    #         print(recipe['title'])
+    if response: 
+        print(response[0]['title'])
+        for recipe in response:
+            print(recipe['title'])
 
     return render_template('profile.html', response = response, delete_form = delete_form )
 

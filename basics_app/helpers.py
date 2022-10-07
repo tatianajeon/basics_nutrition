@@ -1,8 +1,8 @@
 from functools import wraps
 import secrets
 from json import JSONEncoder
-from flask import request, jsonify, json, Blueprint
-from basics_app.models import db, User, Recipe
+from flask import request, jsonify, json, Blueprint, flash
+from basics_app.models import RecipeSchema, db, User, Recipe, recipe_schema, recipes_schema
 from basics_app.forms import addRecipe, deleteRecipe
 from flask_login import current_user
 import decimal
@@ -42,7 +42,6 @@ class JSONEncoder(json.JSONEncoder):
 
 def save_recipe():
     form = addRecipe()
-
     title = form.title.data
     readyInMinutes = form.readyInMinutes.data
     servingSize = form.servingSize.data
@@ -51,26 +50,49 @@ def save_recipe():
     user_token = current_user.token
     
     add_recipe = Recipe(title, readyInMinutes, servingSize, sourceUrl, image, user_token = user_token)
-    saved_recipes = Recipe.query.all()
+    # saved_recipes = Recipe.query.all()
 
-    if add_recipe.title in saved_recipes: 
-        print(f'{add_recipe.title} has already been saved to your profile!')
-    
+    lst = Recipe.query.all()
+    response = recipes_schema.dump(lst)
+
+    for recipe in response: 
+        if add_recipe.title == recipe['title']: 
+            print(f'{add_recipe.title} has already been saved to your profile!')
+            return
+
     else:
         print(f'adding {add_recipe.title}')
+        flash('this is a flash message')
         db.session.add(add_recipe)
         db.session.commit()
-    
-    return saved_recipes
+
+    return add_recipe
 
 
 def delete_recipe():
+    print('hello delete function')
     delete_form = deleteRecipe()
     title = delete_form.title.data
-    
-    to_delete = Recipe.query.get(title)
-    db.session.delete(to_delete)
+    print(f"trying to delete {title}")
+
+    Recipe.query.filter_by(title=title).delete()
     db.session.commit()
+    
+    lst = Recipe.query.all()
+    response = recipes_schema.dump(lst)
+    print(response)
+
+    # for recipe in response: 
+    #     to_delete = recipe['title']
+    #     if title == to_delete:
+    #         db.session.delete(to_delete)
+    #         db.session.commit()
+
     print(f'{title} has been deleted from your profile')
     
-    return to_delete
+    return title
+
+
+
+
+    

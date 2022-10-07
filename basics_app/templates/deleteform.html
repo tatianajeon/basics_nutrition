@@ -3,10 +3,10 @@
         <fieldset hidden>
             {{ delete_form.csrf_token }}
             {{ delete_form.title(class="form-control", value=recipe['title']) }}
-            {{ delete_form.readyInMinutes(class='form-control', value=recipe['readyInMinutes']) }}
+            <!-- {{ delete_form.readyInMinutes(class='form-control', value=recipe['readyInMinutes']) }}
             {{ delete_form.servingSize(class='form-control', value=recipe['servings']) }}
             {{ delete_form.sourceUrl(class='form-control', value=recipe['sourceUrl']) }}
-            {{ delete_form.image(class='form-control', value=recipe['image']) }}
+            {{ delete_form.image(class='form-control', value=recipe['image']) }} -->
         </fieldset>
     </div>
         {{ delete_form.submit_button(class='btn btn-outline-danger btn block', value='Delete Recipe') }}
