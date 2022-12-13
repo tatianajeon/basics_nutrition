@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
     date_create = db.Column(db.DateTime, nullable = False, default = datetime.utcnow) 
     recipe = db.relationship('Recipe', backref = 'owner', lazy = True)
 
-    def __init__(self, email, first_name = '', last_name = '', id = '', password = '', token = '',   g_auth_verify = False):
+    def __init__(self, email, first_name = '', last_name = '', id = '', password = '', token = '', g_auth_verify = False):
         self.id = self.set_id()
         self.first_name = first_name
         self.last_name = last_name

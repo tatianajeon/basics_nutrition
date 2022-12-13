@@ -38,6 +38,7 @@ def signin():
             print(email, password)
 
             logged_user = User.query.filter(User.email == email).first()
+            
             if logged_user and check_password_hash(logged_user.password, password):
                 login_user(logged_user)
                 flash('You were succesfully login in via Email/Password', 'auth-success')
@@ -48,7 +49,6 @@ def signin():
     except:
         raise Exception('Invalid Form Data: Please Check Your Form')
         
-
     return render_template('signin.html', form=form)
 
 
